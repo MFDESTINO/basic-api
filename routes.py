@@ -38,7 +38,7 @@ def update_user(id: str, request: Request, user: UserUpdate = Body(...)):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"User with ID {id} not found")
     
     user = user.dict()
-    
+
     #data validation
     if user['username']:
         is_username_valid(user['username'])
@@ -58,4 +58,12 @@ def update_user(id: str, request: Request, user: UserUpdate = Body(...)):
     existing_book = request.app.database["users"].find_one({"_id": id})
     
     return existing_book
+
+@router.delete("/{id}", response_description="Delete a user")
+def delete_user(id: str, request: Request, response: Response):
+    if request.app.database["users"].find_one({"_id": id}) is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"User with ID {id} not found")
+
+    delete_result = request.app.database["users"].delete_one({"_id": id})
+    return f'User with id {id} deleted successfully.'
 
