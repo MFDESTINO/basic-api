@@ -20,3 +20,18 @@ class User(BaseModel):
             }
         }
 
+class UserUpdate(BaseModel):
+    username: Optional[str]
+    name: Optional[str]
+    email: Optional[str]
+    birthday: Optional[str]
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "username": "MFDOOM",
+                "email": "mfdoom@gmail.com",
+                "name": "Daniel Dumile",
+                "birthday": "1971-7-13"
+            }
+        }
