@@ -10,11 +10,9 @@ app = FastAPI()
 
 @app.on_event("startup")
 def startup_db_client():
-    verbose = config['VERBOSE']
     app.mongodb_client = MongoClient(config["ATLAS_URI"])
     app.database = app.mongodb_client[config["DB_NAME"]]
-    if verbose:
-        print("Connected to the Atlas MongoDB database.")
+    print("Connected to the Atlas MongoDB database.")
 
 @app.on_event("shutdown")
 def shutdown_db_client():
