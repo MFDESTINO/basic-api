@@ -2,7 +2,7 @@ from fastapi import APIRouter, Body, Request, Response, HTTPException, status
 from fastapi.encoders import jsonable_encoder
 from typing import List
 from models import User
-from data_validation import is_email_available, is_email_valid, is_birthday_valid, is_username_available
+from data_validation import is_email_available, is_email_valid, is_birthday_valid, is_username_available, is_username_valid
 import uuid
 
 router = APIRouter()
@@ -21,6 +21,7 @@ def create_user(request: Request, user: User = Body(...)):
     #data validation
     is_email_valid(user['email'])
     is_birthday_valid(user['birthday'])
+    is_username_valid(user['username'])
     is_username_available(request, user['username'])
     is_email_available(request, user['email'])
 

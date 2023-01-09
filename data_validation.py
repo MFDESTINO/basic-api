@@ -13,6 +13,15 @@ def is_email_valid(email):
     if not re.fullmatch(email_regex, email):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Invalid email address.")
 
+def is_username_valid(username):
+    #Username must be between 5 and 25 characters
+    #Only alphanumeric characters, underscores and dot
+    #Underscore and dot cant be at the start or the end
+    #Underscore and dot cant be next to each other (__, _., ..)
+    username_regex = r'^(?=.{5,25}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$'
+    if not re.fullmatch(username_regex, username):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Invalid username.")
+
 def is_username_available(request, username):
     if request.app.database["users"].find_one({"username": username}):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Username {username} already exists!")
