@@ -30,11 +30,17 @@ Sendo ATLAS_URI o endereço obtido no passo anterior.
 
 ## Execução
 
-Para iniciar a aplicação, basta rodar o seguinte comando:
+Para iniciar a aplicação, basta executar o seguinte comando:
 
     python -m uvicorn main:app --reload
 
 Uma página de documentação que permite testar a API fica disponível em [http://localhost:8000/docs](http://localhost:8000/docs)
+
+## Testes
+
+Para executar os testes escritos, basta executar o seguinte comando:
+
+    pytest -v
 
 ## Métodos
 
