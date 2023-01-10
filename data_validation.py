@@ -37,7 +37,7 @@ def is_username_available(request, username: str):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Username {username} already exists!")
 
 def is_email_available(request, email: str):
-    """Check if username is email in the database"""
+    """Check if email is available in the database"""
 
     if request.app.database["users"].find_one({"email": email}):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"User with email {email} already exists!")
