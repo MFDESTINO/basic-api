@@ -26,6 +26,7 @@ Com isso, crie o arquivo **.env** que deve estar na raiz deste projeto, contendo
 
     ATLAS_URI=mongodb+srv://<user>:<password>@cluster0.lbsb4ym.mongodb.net/?retryWrites=true&w=majority
     DB_NAME=hashdex_api_challenge
+Sendo ATLAS_URI o endereço obtido no passo anterior.
 
 ## Execução
 
