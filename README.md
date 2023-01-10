@@ -6,7 +6,7 @@ Nesta API é possível criar e gerenciar usuários em um banco de dados MongoDB.
 
 Primeiro crie e inicialize um ambiente virtual para o projeto:
 
-    python3 -m venv hashdex-api-challenge-venv && source hashdex-api-challlenge-venv/bin/activate
+    python3 -m venv hashdex-api-challenge-venv && source hashdex-api-challenge-venv/bin/activate
 
 Instale as dependências necessárias:
 
