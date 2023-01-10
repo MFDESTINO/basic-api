@@ -13,6 +13,7 @@ def list_users(request: Request):
     users = list(request.app.database["users"].find(limit=100))
     return users
 
+
 @router.post("/", response_description="Create a new user", status_code=status.HTTP_201_CREATED, response_model=User)
 def create_user(request: Request, user: User = Body(...)):
     user = jsonable_encoder(user)
@@ -32,8 +33,11 @@ def create_user(request: Request, user: User = Body(...)):
 
     return created_user
 
+
 @router.put("/{id}", response_description="Update a user", response_model=User)
 def update_user(id: str, request: Request, user: UserUpdate = Body(...)):
+
+    #check if user with the given ID exists
     if request.app.database["users"].find_one({"_id": id}) is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"User with ID {id} not found")
     
@@ -50,7 +54,7 @@ def update_user(id: str, request: Request, user: UserUpdate = Body(...)):
         is_birthday_valid(user['birthday'])
 
     user = {k: v for k, v in user.items() if v is not None} #remove empty keypairs
-    if len(user) >= 1:
+    if len(user) >= 1: #only update if at least one parameter is changed
         update_result = request.app.database["users"].update_one(
             {"_id": id}, {"$set": user}
         )
@@ -59,8 +63,11 @@ def update_user(id: str, request: Request, user: UserUpdate = Body(...)):
     
     return existing_book
 
+
 @router.delete("/{id}", response_description="Delete a user")
 def delete_user(id: str, request: Request, response: Response):
+
+    #check if user with the given ID exists
     if request.app.database["users"].find_one({"_id": id}) is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"User with ID {id} not found")
 
