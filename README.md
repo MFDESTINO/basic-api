@@ -1,18 +1,14 @@
 # Hashdex API Challenge
 Projeto de API para desafio técnico  
-Nesta API é possível criar e gerenciar usuários em um banco de dados MongoDB.
+Nesta API é possível criar e gerenciar usuários em um banco de dados MongoDB. Foi utilizado o framework FastAPI.
 
 ## Instalação
 
-Primeiro crie um ambiente virtual para o projeto:
+Primeiro crie e inicialize um ambiente virtual para o projeto:
 
-    python3 -m venv hashdex-api-challenge-venv
+    python3 -m venv hashdex-api-challenge-venv && source hashdex-api-challlenge-venv/bin/activate
 
-Em seguida, inicialize o ambiente virtual:
-
-    source hashdex-api-challlenge-venv/bin/activate
-
-E instale as dependências necessárias:
+Instale as dependências necessárias:
 
     python3 -m pip install 'fastapi[all]' 'pymongo[srv]' python-dotenv pytest httpx
 
@@ -20,7 +16,24 @@ Com as dependências instaladas, clone este repositório:
 
     git clone https://github.com/couto0/hashdex-api-challenge.git && cd hashdex-api-challenge
 
+Para este projeto, foi utilizado o MongoDB Atlas, uma solução em Cloud que permite a criação rápida e fácil de um banco de dados mongodb gratuitamente. Para isso, siga os passos de 1 a 5 descritos em [Getting Started with Atlas](https://www.mongodb.com/docs/atlas/getting-started/).
 
+Com o cluster configurado, obtenha o endereço de conexão em `Connect/Connect your application`, que deve ser semelhante a isso:
+
+    mongodb+srv://<user>:<password>@cluster0.lbsb4ym.mongodb.net/?retryWrites=true&w=majority
+
+Com isso, crie o arquivo **.env** que deve estar na raiz deste projeto, contendo o seguinte:
+
+    ATLAS_URI=mongodb+srv://<user>:<password>@cluster0.lbsb4ym.mongodb.net/?retryWrites=true&w=majority
+    DB_NAME=hashdex_api_challenge
+
+## Execução
+
+Para iniciar a aplicação, basta rodar o seguinte comando:
+
+    python -m uvicorn main:app --reload
+
+Uma página de documentação que permite testar a API fica disponível em [http://localhost:8000/docs](http://localhost:8000/docs)
 
 ## Métodos
 
