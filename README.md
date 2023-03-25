@@ -1,6 +1,6 @@
-# Hashdex API Challenge
-Projeto de API para desafio técnico  
-Nesta API é possível criar e gerenciar usuários em um banco de dados MongoDB. Foi utilizado o framework FastAPI.
+# Basic API
+Projeto de API REST básica com FastAPI e MongoDB  
+Nesta API é possível criar e gerenciar usuários em um banco de dados MongoDB.
 
 ## Instalação
 
